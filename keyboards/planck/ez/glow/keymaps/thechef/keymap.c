@@ -79,16 +79,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LOWER] = LAYOUT_planck_grid(
-    KC_TILD, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, 
-    KC_DEL ,  OSL(5), KC_LBRC, KC_LCBR, KC_LPRN, MCRO_0 , MCRO_1 , KC_RPRN, KC_RCBR, KC_RBRC, KC_RCBR, KC_PIPE,        
-    _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , MCRO_2 , MCRO_3 , KC_NUHS, KC_NUBS, KC_HOME, KC_END , _______, 
+    KC_TILD, KC_EXLM, KC_EXLM, KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, 
+    KC_DEL , OSL(5) , KC_LBRC, KC_LCBR, KC_LPRN, MCRO_0 , MCRO_1 , KC_RPRN, KC_RCBR, KC_RBRC, KC_RCBR, KC_PIPE,        
+    KC_INS , KC_F7  , KC_F8  , KC_F9  , KC_F10 , MCRO_2 , MCRO_3 , KC_NUHS, KC_NUBS, KC_HOME, KC_END , _______, 
     _______, _______, _______, _______, _______, _______, XXXXXXX, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
   ),
 
   [_RAISE] = LAYOUT_planck_grid(
-    KC_GRV , KC_1,    KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , _______, 
-    KC_DEL , _______, KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, KC_BSLS,      
-    _______, KC_F7,   KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, _______, 
+    KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , _______, 
+    KC_DEL , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, KC_BSLS,      
+    _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, _______, 
     _______, _______, _______, _______, _______, TO(4)  , XXXXXXX, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
   ),
   
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LAYER4] = LAYOUT_planck_grid(
     _______, _______, KC_BTN2, KC_MS_U, KC_BTN1, _______, _______, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______, 
-    _______, KC_WH_U, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, _______, _______, 
+    _______, KC_WH_U, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, 
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
     TO(0)  , _______, _______, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, _______
   ),

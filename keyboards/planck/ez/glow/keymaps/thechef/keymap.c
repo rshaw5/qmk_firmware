@@ -55,6 +55,8 @@ enum planck_keycodes {
   MCRO_1,
   MCRO_2,
   MCRO_3,
+  MCRO_4,
+  MCRO_5,
 };
 
 enum planck_layers {
@@ -100,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_NAVIGATE] = LAYOUT_planck_grid(
-    _______, _______, KC_BTN2, KC_MS_U, KC_BTN1, _______, _______, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______, 
+    _______, _______, KC_BTN2, KC_MS_U, KC_BTN1, MCRO_4 , MCRO_5, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______, 
     TO(0)  , KC_WH_U, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, 
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
     TO(0)  , _______, _______, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, _______
@@ -192,6 +194,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_EQUAL) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)));
 
+    }
+    break;
+    case MCRO_4:
+    if (record->event.pressed) {
+      register_code(KC_LSHIFT);
+      register_code(KC_LCTRL);
+      register_code(KC_LALT);
+      SEND_STRING("s");
+      clear_keyboard();
+    }
+    break;
+    case MCRO_5:
+    if (record->event.pressed) {
+      register_code(KC_LSHIFT);
+      register_code(KC_LCTRL);
+      register_code(KC_LALT);
+      SEND_STRING("x");
+      clear_keyboard();
     }
     break;
     case RGB_SLD:

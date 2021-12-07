@@ -60,7 +60,8 @@ enum planck_keycodes {
 };
 
 enum planck_layers {
-  _BASE,
+  _QWERTY_MAC,
+  _QWERTY_WIN,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -68,21 +69,54 @@ enum planck_layers {
   _NUMPAD,
 };
 
+uint16_t current_base_layer = _QWERTY_MAC;
+
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define WEBUSB WEBUSB_PAIR
+#define SYNWIN 
+#define SYNMAC
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_planck_grid(
+  /* QWERTY - Mac
+   * ,-----------------------------------------------------------------------------------.
+   * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+   * |------+------+------+------+------+-------------+------+------+------+------+------|
+   * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+   * |------+------+------+------+------+------|------+------+------+------+------+------|
+   * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+   * |------+------+------+------+------+------+------+------+------+------+------+------|
+   * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+   * `-----------------------------------------------------------------------------------'
+   */
+  [_QWERTY_MAC] = LAYOUT_planck_grid(
     KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,      
     KC_ESC , KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT,       
     KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,       
-    TT(5)  , KC_LCTL, KC_LALT, KC_LGUI, LOWER  , KC_SPC , XXXXXXX, RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+    TT(_NUMPAD)  , KC_LCTL, KC_LALT, KC_LGUI, LOWER  , KC_SPC , XXXXXXX, RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+  ),
+
+  /* QWERTY - Windows
+   * ,-----------------------------------------------------------------------------------.
+   * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+   * |------+------+------+------+------+-------------+------+------+------+------+------|
+   * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+   * |------+------+------+------+------+------|------+------+------+------+------+------|
+   * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+   * |------+------+------+------+------+------+------+------+------+------+------+------|
+   * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+   * `-----------------------------------------------------------------------------------'
+   */
+  [_QWERTY_WIN] = LAYOUT_planck_grid(
+    KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,      
+    KC_ESC , KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT,       
+    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,       
+    TT(_NUMPAD)  , KC_LGUI, KC_LALT, KC_LCTL, LOWER  , KC_SPC , XXXXXXX, RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
   ),
 
   [_LOWER] = LAYOUT_planck_grid(
     KC_TILD, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, 
-    KC_DEL , OSL(5) , KC_LBRC, KC_LCBR, KC_LPRN, MCRO_0 , MCRO_1 , KC_RPRN, KC_RCBR, KC_RBRC, KC_RCBR, KC_PIPE,        
+    KC_DEL , _______, KC_LBRC, KC_LCBR, KC_LPRN, MCRO_0 , MCRO_1 , KC_RPRN, KC_RCBR, KC_RBRC, KC_RCBR, KC_PIPE,        
     KC_INS , KC_F7  , KC_F8  , KC_F9  , KC_F10 , MCRO_2 , MCRO_3 , KC_NUHS, KC_NUBS, KC_HOME, KC_END , _______, 
     _______, _______, _______, _______, _______, _______, XXXXXXX, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
   ),
@@ -91,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , _______, 
     KC_DEL , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, KC_BSLS,      
     _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, _______, 
-    _______, _______, _______, _______, _______, TO(4)  , XXXXXXX, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+    _______, _______, _______, _______, _______, TO(_NAVIGATE)  , XXXXXXX, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
   ),
   
   [_ADJUST] = LAYOUT_planck_grid(
@@ -103,9 +137,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAVIGATE] = LAYOUT_planck_grid(
     _______, _______, KC_BTN2, KC_MS_U, KC_BTN1, MCRO_4 , MCRO_5, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______, 
-    TO(0)  , KC_WH_U, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, 
+    TO(_QWERTY_MAC)  , KC_WH_U, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, 
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
-    TO(0)  , _______, _______, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, _______
+    TO(_QWERTY_MAC)  , _______, _______, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, _______
   ),
 
   [_NUMPAD] = LAYOUT_planck_grid(
@@ -126,9 +160,9 @@ void keyboard_post_init_user(void) {
 }
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
-    [4] = { {0,0,0}, {0,0,0}, {0,245,245}, {74,255,255}, {0,245,245}, {0,0,0}, {0,0,0}, {252,255,232}, {252,255,232}, {252,255,232}, {0,0,0}, {0,0,0}, {0,0,0}, {0,245,245}, {74,255,255}, {74,255,255}, {74,255,255}, {0,245,245}, {188,255,255}, {188,255,255}, {188,255,255}, {188,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+    [5] = { {0,0,0}, {0,0,0}, {0,245,245}, {74,255,255}, {0,245,245}, {0,0,0}, {0,0,0}, {252,255,232}, {252,255,232}, {252,255,232}, {0,0,0}, {0,0,0}, {0,0,0}, {0,245,245}, {74,255,255}, {74,255,255}, {74,255,255}, {0,245,245}, {188,255,255}, {188,255,255}, {188,255,255}, {188,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
 
-    [5] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {131,255,255}, {74,255,255}, {0,245,245}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {131,255,255}, {74,255,255}, {41,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {131,255,255}, {74,255,255}, {219,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {219,255,255}, {74,255,255}, {219,255,255} },
+    [6] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {131,255,255}, {74,255,255}, {0,245,245}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {131,255,255}, {74,255,255}, {41,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {131,255,255}, {74,255,255}, {219,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {131,255,255}, {131,255,255}, {219,255,255}, {74,255,255}, {219,255,255} },
 
 };
 
@@ -152,11 +186,11 @@ void set_layer_color(int layer) {
 void rgb_matrix_indicators_user(void) {
   if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
   switch (biton32(layer_state)) {
-    case 4:
-      set_layer_color(4);
-      break;
     case 5:
       set_layer_color(5);
+      break;
+    case 6:
+      set_layer_color(6);
       break;
    default:
     if (rgb_matrix_get_flags() == LED_FLAG_NONE)
@@ -203,6 +237,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       register_code(KC_LALT);
       SEND_STRING("s");
       clear_keyboard();
+      set_single_persistent_default_layer(_QWERTY_WIN);
+      current_base_layer = _QWERTY_WIN;
+      return false;
     }
     break;
     case MCRO_5:
@@ -212,6 +249,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       register_code(KC_LALT);
       SEND_STRING("x");
       clear_keyboard();
+      set_single_persistent_default_layer(_QWERTY_MAC);
+      current_base_layer = _QWERTY_MAC;
+      return false;
     }
     break;
     case RGB_SLD:

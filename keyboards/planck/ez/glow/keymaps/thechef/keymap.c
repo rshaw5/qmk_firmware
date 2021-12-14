@@ -77,7 +77,7 @@ uint16_t current_base_layer = _QWERTY_MAC;
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-#define NUMPAD TT(_NUMPAD)
+#define NUMPAD TO(_NUMPAD)
 #define NAV TO(_NAVIGATE)
 #define SEMSYMB TO(_SEMSYMB)
 #define WEBUSB WEBUSB_PAIR
@@ -142,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______ , _______ , _______ , _______ , _______ , _______ , XXXXXXX , _______ , KC_MNXT , KC_VOLD , KC_VOLU , KC_MPLY
   ),
 
-  /* Upper
+  /* Raise
    * ,-----------------------------------------------------------------------------------------------.
    * | `     |   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |   9   |   0   | Bksp  |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -165,7 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------------------------------------------.
    * | Wbusb |       |       |       |       |       |       |       |       |       |       | Reset |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       | AudOn | AudOf | AudTg |       |       | RgbTg | RgbU  | RgbD  |       |       |
+   * |       |       | AudOn | AudOf | AudTg |       |       | RgbTg | RgbU  | RgbD  |       | EEPRM |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Ins   |       |       |       |       | "<="  | "=>"  |  \ |  | ColU  | ColD  |       |       |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -175,7 +175,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_ADJUST] = LAYOUT_planck_grid(
     WEBUSB  , XXXXXXX , XXXXXXX , XXXXXXX  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , RESET   ,          
-    XXXXXXX , XXXXXXX , AU_ON   , AU_OFF   , AU_TOG  , XXXXXXX , XXXXXXX , RGB_TOG , RGB_VAI , RGB_VAD , XXXXXXX , XXXXXXX , 
+    XXXXXXX , XXXXXXX , AU_ON   , AU_OFF   , AU_TOG  , XXXXXXX , XXXXXXX , RGB_TOG , RGB_VAI , RGB_VAD , XXXXXXX , EEP_RST , 
     XXXXXXX , XXXXXXX , MU_ON   , MU_OFF   , MU_TOG  , XXXXXXX , XXXXXXX , RGB_MOD , RGB_HUI , RGB_HUD , XXXXXXX , XXXXXXX , 
     XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
   ),
@@ -199,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     EXT_NAV , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______
   ),
 
-  /* Keypad
+  /* Numpad
    * ,-----------------------------------------------------------------------------------------------.
    * | Esc   |       |       |       |       |       |       |   7   |   8   |   9   |   *   | Bksp  |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -212,13 +212,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------------------'
    */
   [_NUMPAD] = LAYOUT_planck_grid(
-    _______ , XXXXXXX, XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_7 , KC_KP_8 , KC_KP_9 , KC_PAST , _______ , 
-    EXT_PAD , XXXXXXX, XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_4 , KC_KP_5 , KC_KP_6 , KC_PSLS , KC_PEQL ,    
-    XXXXXXX , XXXXXXX, XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_1 , KC_KP_2 , KC_KP_3 , KC_PPLS , KC_PENT ,    
-    EXT_PAD , XXXXXXX, XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , KC_KP_0 , KC_KP_0 , KC_PDOT , KC_PMNS , KC_PENT 
+    _______ , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_7 , KC_KP_8 , KC_KP_9 , KC_PAST , _______ , 
+    EXT_PAD , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_4 , KC_KP_5 , KC_KP_6 , KC_PSLS , KC_PEQL ,    
+    XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_1 , KC_KP_2 , KC_KP_3 , KC_PPLS , KC_PENT ,    
+    EXT_PAD , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , KC_KP_0 , KC_KP_0 , KC_PDOT , KC_PMNS , KC_PENT 
   ),
 
-    /* Symantic Symbols
+  /* Symantic Symbols
    * ,-----------------------------------------------------------------------------------------------.
    * | Esc   |       |       | ! Exl |       | * Ast |       |       |       |       | % Prc | Bksp  |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -231,10 +231,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------------------'
    */
   [_SEMSYMB] = LAYOUT_planck_grid(
-    _______ , XXXXXXX, XXXXXXX , KC_EXLM , XXXXXXX , KC_ASTR , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_PERC , _______ , 
-    EXT_SYS , KC_AT  , KC_HASH , KC_DLR  , XXXXXXX , XXXXXXX , KC_HASH , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,    
-    XXXXXXX , XXXXXXX, XXXXXXX , KC_CIRC , XXXXXXX , KC_EXLM , XXXXXXX , KC_AMPR , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,    
-    EXT_SYS , XXXXXXX, XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______ 
+    _______ , XXXXXXX , XXXXXXX , KC_EXLM , XXXXXXX , KC_ASTR , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_PERC , _______ , 
+    EXT_SYS , KC_AT   , KC_HASH , KC_DLR  , XXXXXXX , XXXXXXX , KC_HASH , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,    
+    XXXXXXX , XXXXXXX , XXXXXXX , KC_CIRC , XXXXXXX , KC_EXLM , XXXXXXX , KC_AMPR , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,    
+    EXT_SYS , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______ 
   ),
 };
 
@@ -257,7 +257,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
       {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {131,255,255}, {131,255,255}, {131,255,255}, {074,255,255}, {000,245,245},
       {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {131,255,255}, {131,255,255}, {131,255,255}, {074,255,255}, {041,255,255},
       {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {131,255,255}, {131,255,255}, {131,255,255}, {074,255,255}, {219,255,255},
-      {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000},        {131,255,255}        , {000,000,000}, {131,255,255}, {219,255,255}, {074,255,255}, {219,255,255}
+      {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000},        {131,255,255}        , {131,255,255}, {131,255,255}, {219,255,255}, {074,255,255}, {219,255,255}
     },
     [7] = {
       {131,255,255}, {000,000,000}, {000,000,000}, {131,255,255}, {000,000,000}, {131,255,255}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {131,255,255}, {131,255,255},

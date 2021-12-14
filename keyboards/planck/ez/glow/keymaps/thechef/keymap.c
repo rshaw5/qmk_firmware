@@ -83,6 +83,7 @@ uint16_t current_base_layer = _QWERTY_MAC;
 #define WEBUSB WEBUSB_PAIR
 
 #define RUNTEST LCA(KC_R)
+#define KC_NUML KC_NUMLOCK
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* QWERTY - Mac
@@ -201,7 +202,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Numpad
    * ,-----------------------------------------------------------------------------------------------.
-   * | Esc   |       |       |       |       |       |       |   7   |   8   |   9   |   *   | Bksp  |
+   * | Esc   | NUMLK |       |       |       |       |       |   7   |   8   |   9   |   *   | Bksp  |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  |       |       |       |       |       |       |   4   |   5   |   6   |   /   | Equal |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -212,7 +213,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------------------'
    */
   [_NUMPAD] = LAYOUT_planck_grid(
-    _______ , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_7 , KC_KP_8 , KC_KP_9 , KC_PAST , _______ , 
+    _______ , KC_NUML , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_7 , KC_KP_8 , KC_KP_9 , KC_PAST , _______ , 
     EXT_PAD , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_4 , KC_KP_5 , KC_KP_6 , KC_PSLS , KC_PEQL ,    
     XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_1 , KC_KP_2 , KC_KP_3 , KC_PPLS , KC_PENT ,    
     EXT_PAD , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , KC_KP_0 , KC_KP_0 , KC_PDOT , KC_PMNS , KC_PENT 

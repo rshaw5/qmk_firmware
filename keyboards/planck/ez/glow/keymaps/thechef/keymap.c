@@ -341,7 +341,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             register_code(KC_LCTRL);
             register_code(KC_LALT);
             SEND_STRING("s");
-            //   set_single_persistent_default_layer(_QWERTY_WIN);
+            set_single_persistent_default_layer(_QWERTY_WIN);
             current_base_layer = _QWERTY_WIN;
             clear_keyboard();
         }
@@ -353,7 +353,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             register_code(KC_LCTRL);
             register_code(KC_LALT);
             SEND_STRING("x");
-            //   set_single_persistent_default_layer(_QWERTY_MAC);
+            set_single_persistent_default_layer(_QWERTY_MAC);
             current_base_layer = _QWERTY_MAC;
             clear_keyboard();
         }

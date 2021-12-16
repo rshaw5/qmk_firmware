@@ -161,7 +161,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_INS  , KC_F7   , KC_F8   , KC_F9   , KC_F10  , KC_F11 , KC_F12  , KC_BSLS , XXXXXXX , KC_PGUP , KC_PGDN , _______ ,
     _______ , _______ , _______ , _______ , _______ , NAV    , XXXXXXX , _______ , KC_MNXT , KC_VOLD , KC_VOLU , KC_MPLY
   ),
-  
+
   /* Adjust
    * ,-----------------------------------------------------------------------------------------------.
    * | Wbusb |       |       |       |       |       |       |       |       |       |       | Reset |
@@ -175,9 +175,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------------------'
    */
   [_ADJUST] = LAYOUT_planck_grid(
-    WEBUSB  , XXXXXXX , XXXXXXX , XXXXXXX  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , RESET   ,          
-    XXXXXXX , XXXXXXX , AU_ON   , AU_OFF   , AU_TOG  , XXXXXXX , XXXXXXX , RGB_TOG , RGB_VAI , RGB_VAD , XXXXXXX , EEP_RST , 
-    XXXXXXX , XXXXXXX , MU_ON   , MU_OFF   , MU_TOG  , XXXXXXX , XXXXXXX , RGB_MOD , RGB_HUI , RGB_HUD , XXXXXXX , XXXXXXX , 
+    WEBUSB  , XXXXXXX , XXXXXXX , XXXXXXX  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , RESET   ,
+    XXXXXXX , XXXXXXX , AU_ON   , AU_OFF   , AU_TOG  , XXXXXXX , XXXXXXX , RGB_TOG , RGB_VAI , RGB_VAD , XXXXXXX , EEP_RST ,
+    XXXXXXX , XXXXXXX , MU_ON   , MU_OFF   , MU_TOG  , XXXXXXX , XXXXXXX , RGB_MOD , RGB_HUI , RGB_HUD , XXXXXXX , XXXXXXX ,
     XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX
   ),
 
@@ -187,16 +187,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  | WhlD  | MsLft | MsDwn | MsRgt | WhlU  | <-    | v     | ^     | ->    |       |       |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       |       |       |       |       |       |       |       |       | Enter |
+   * | Shift |       |       |       |       |       |       |       |       |       |       | Enter |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  |       |       |       |       |     Space     |       |  <-   |   v   |   ^   |  ->   |
    * |       |       |       |       |       |               |       |       |       |       |       |
    * `-----------------------------------------------------------------------------------------------'
    */
   [_NAVIGATE] = LAYOUT_planck_grid(
-    XXXXXXX , XXXXXXX , KC_BTN2 , KC_MS_U , KC_BTN1 , MCRO_4  , MCRO_5  , KC_ACL0 , KC_ACL1 , KC_ACL2 , XXXXXXX , _______ , 
-    EXT_NAV , KC_WH_D , KC_MS_L , KC_MS_D , KC_MS_R , KC_WH_U , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , XXXXXXX , XXXXXXX , 
-    XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , 
+    XXXXXXX , XXXXXXX , KC_BTN2 , KC_MS_U , KC_BTN1 , MCRO_4  , MCRO_5  , KC_ACL0 , KC_ACL1 , KC_ACL2 , XXXXXXX , _______ ,
+    EXT_NAV , KC_WH_D , KC_MS_L , KC_MS_D , KC_MS_R , KC_WH_U , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , XXXXXXX , XXXXXXX ,
+    _______ , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,
     EXT_NAV , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______
   ),
 
@@ -206,17 +206,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  |       |       |       |       |       |       |   4   |   5   |   6   |   /   | Equal |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       |       |       |       |       |   1   |   2   |   3   |   +   | Enter |
+   * | Shift |       |       |       |       |       |       |   1   |   2   |   3   |   +   | Enter |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  |       |       |       |       |     Space     |   0   |   0   |   .   |   -   | Enter |
    * |       |       |       |       |       |               |       |       |       |       |       |
    * `-----------------------------------------------------------------------------------------------'
    */
   [_NUMPAD] = LAYOUT_planck_grid(
-    _______ , KC_NUML , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_7 , KC_KP_8 , KC_KP_9 , KC_PAST , _______ , 
-    EXT_PAD , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_4 , KC_KP_5 , KC_KP_6 , KC_PSLS , KC_PEQL ,    
-    XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_1 , KC_KP_2 , KC_KP_3 , KC_PPLS , KC_PENT ,    
-    EXT_PAD , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , KC_KP_0 , KC_KP_0 , KC_PDOT , KC_PMNS , KC_PENT 
+    _______ , KC_NUML , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_7 , KC_KP_8 , KC_KP_9 , KC_PAST , _______ ,
+    EXT_PAD , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_4 , KC_KP_5 , KC_KP_6 , KC_PSLS , KC_PEQL ,
+    _______ , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_KP_1 , KC_KP_2 , KC_KP_3 , KC_PPLS , KC_PENT ,
+    EXT_PAD , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , KC_KP_0 , KC_KP_0 , KC_PDOT , KC_PMNS , KC_PENT
   ),
 
   /* Symantic Symbols
@@ -225,17 +225,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  | @ At  | # Shp | $ Dlr |       |       | # Hsh |       |       |       |       |       |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       | ^ Cir |       | ! Bng |       | & Amp |       |       |       | Enter |
+   * | Shift |       |       | ^ Cir |       | ! Bng |       | & Amp |       |       |       | Enter |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  |       |       |       |       |     Space     |       |  <-   |   v   |   ^   |  ->   |
    * |       |       |       |       |       |               |       |       |       |       |       |
    * `-----------------------------------------------------------------------------------------------'
    */
   [_SEMSYMB] = LAYOUT_planck_grid(
-    _______ , XXXXXXX , XXXXXXX , KC_EXLM , XXXXXXX , KC_ASTR , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_PERC , _______ , 
-    EXT_SYS , KC_AT   , KC_HASH , KC_DLR  , XXXXXXX , XXXXXXX , KC_HASH , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,    
-    XXXXXXX , XXXXXXX , XXXXXXX , KC_CIRC , XXXXXXX , KC_EXLM , XXXXXXX , KC_AMPR , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,    
-    EXT_SYS , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______ 
+    _______ , XXXXXXX , XXXXXXX , KC_EXLM , XXXXXXX , KC_ASTR , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_PERC , _______ ,
+    EXT_SYS , KC_AT   , KC_HASH , KC_DLR  , XXXXXXX , XXXXXXX , KC_HASH , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+    _______ , XXXXXXX , XXXXXXX , KC_CIRC , XXXXXXX , KC_EXLM , XXXXXXX , KC_AMPR , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,
+    EXT_SYS , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______
   ),
 };
 
@@ -308,7 +308,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // If console is enabled, it will print the matrix position and status of each key pressed
     #ifdef CONSOLE_ENABLE
         uprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
-    #endif 
+    #endif
 
   switch (keycode) {
     case MCRO_0:

@@ -312,71 +312,79 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
     case MCRO_0:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_COMMA)) SS_DELAY(100) SS_TAP(X_MINUS));
+        if (record->event.pressed) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_COMMA)) SS_DELAY(100) SS_TAP(X_MINUS));
+        }
 
-    }
-    break;
+        return false;
     case MCRO_1:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_MINUS) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)));
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_MINUS) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)));
+        }
 
-    }
-    break;
+        return false;
     case MCRO_2:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_COMMA)) SS_DELAY(100) SS_TAP(X_EQUAL));
+        if (record->event.pressed) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_COMMA)) SS_DELAY(100) SS_TAP(X_EQUAL));
+        }
 
-    }
-    break;
+        return false;
     case MCRO_3:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_EQUAL) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)));
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_EQUAL) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)));
+        }
 
-    }
-    break;
+        return false;
     case MCRO_4:
-    if (record->event.pressed) {
-      register_code(KC_LSHIFT);
-      register_code(KC_LCTRL);
-      register_code(KC_LALT);
-      SEND_STRING("s");
-      clear_keyboard();
-      set_single_persistent_default_layer(_QWERTY_WIN);
-      current_base_layer = _QWERTY_WIN;
-      return false;
-    }
-    break;
+        if (record->event.pressed) {
+            register_code(KC_LSHIFT);
+            register_code(KC_LCTRL);
+            register_code(KC_LALT);
+            SEND_STRING("s");
+            //   set_single_persistent_default_layer(_QWERTY_WIN);
+            current_base_layer = _QWERTY_WIN;
+            clear_keyboard();
+        }
+
+        return false;
     case MCRO_5:
-    if (record->event.pressed) {
-      register_code(KC_LSHIFT);
-      register_code(KC_LCTRL);
-      register_code(KC_LALT);
-      SEND_STRING("x");
-      clear_keyboard();
-      set_single_persistent_default_layer(_QWERTY_MAC);
-      current_base_layer = _QWERTY_MAC;
-      return false;
-    }
-    break;
+        if (record->event.pressed) {
+            register_code(KC_LSHIFT);
+            register_code(KC_LCTRL);
+            register_code(KC_LALT);
+            SEND_STRING("x");
+            //   set_single_persistent_default_layer(_QWERTY_MAC);
+            current_base_layer = _QWERTY_MAC;
+            clear_keyboard();
+        }
+
+        return false;
     case EXT_NAV:
-    if (record->event.pressed) {
-        layer_off(_NAVIGATE);
-    }
+        if (record->event.pressed) {
+            layer_off(_NAVIGATE);
+        }
+
+        return false;
     case EXT_PAD:
-    if (record->event.pressed) {
-        layer_off(_NUMPAD);
-    }
+        if (record->event.pressed) {
+            layer_off(_NUMPAD);
+        }
+
+        return false;
     case EXT_SYS:
-    if (record->event.pressed) {
-        layer_off(_SEMSYMB);
-    }
+        if (record->event.pressed) {
+            layer_off(_SEMSYMB);
+        }
+
+        return false;
     case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
+        if (record->event.pressed) {
+            rgblight_mode(1);
+        }
+
+        return false;
   }
+
   return true;
 }
 

@@ -241,19 +241,44 @@ void eeconfig_init_kb(void) {  // EEPROM is getting reset!
 }
 
 
+// Changing from this original because of new base layer in thechef.
+// Look into a better way to fix this.
+
+// layer_state_t layer_state_set_kb(layer_state_t state) {
+//     planck_ez_left_led_off();
+//     planck_ez_right_led_off();
+//     state = layer_state_set_user(state);
+//     uint8_t layer = biton32(state);
+//     switch (layer) {
+//         case 1:
+//             planck_ez_left_led_on();
+//             break;
+//         case 2:
+//             planck_ez_right_led_on();
+//             break;
+//         case 3:
+//             planck_ez_right_led_on();
+//             planck_ez_left_led_on();
+//             break;
+//         default:
+//             break;
+//     }
+//     return state;
+// }
+
 layer_state_t layer_state_set_kb(layer_state_t state) {
     planck_ez_left_led_off();
     planck_ez_right_led_off();
     state = layer_state_set_user(state);
     uint8_t layer = biton32(state);
     switch (layer) {
-        case 1:
+        case 2:
             planck_ez_left_led_on();
             break;
-        case 2:
+        case 3:
             planck_ez_right_led_on();
             break;
-        case 3:
+        case 4:
             planck_ez_right_led_on();
             planck_ez_left_led_on();
             break;

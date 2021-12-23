@@ -60,6 +60,7 @@ enum planck_keycodes {
   EXT_NAV,
   EXT_PAD,
   EXT_SYS,
+  EXT_GME,
 };
 
 enum planck_layers {
@@ -71,12 +72,14 @@ enum planck_layers {
   _NAVIGATE,
   _NUMPAD,
   _SEMSYMB,
+  _GAMING,
 };
 
 uint16_t current_base_layer = _QWERTY_MAC;
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define GAME TO(_GAMING)
 #define NUMPAD TO(_NUMPAD)
 #define NAV TO(_NAVIGATE)
 #define SEMSYMB TO(_SEMSYMB)
@@ -183,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Navigate
    * ,-----------------------------------------------------------------------------------------------.
-   * |       |       | ClkR  | Ms U  | ClkL  | ToWin | ToMac | Acl 0 | Acl 1 | Acl 2 |       | Bksp  |
+   * | GAME  |       | ClkR  | Ms U  | ClkL  | ToWin | ToMac | Acl 0 | Acl 1 | Acl 2 |       | Bksp  |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  | WhlD  | MsLft | MsDwn | MsRgt | WhlU  | <-    | v     | ^     | ->    |       |       |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -194,7 +197,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------------------'
    */
   [_NAVIGATE] = LAYOUT_planck_grid(
-    XXXXXXX , XXXXXXX , KC_BTN2 , KC_MS_U , KC_BTN1 , MCRO_4  , MCRO_5  , KC_ACL0 , KC_ACL1 , KC_ACL2 , XXXXXXX , _______ ,
+    GAME    , XXXXXXX , KC_BTN2 , KC_MS_U , KC_BTN1 , MCRO_4  , MCRO_5  , KC_ACL0 , KC_ACL1 , KC_ACL2 , XXXXXXX , _______ ,
     EXT_NAV , KC_WH_D , KC_MS_L , KC_MS_D , KC_MS_R , KC_WH_U , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , XXXXXXX , XXXXXXX ,
     _______ , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,
     EXT_NAV , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______
@@ -202,7 +205,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Numpad
    * ,-----------------------------------------------------------------------------------------------.
-   * | Esc   | NUMLK |       |       |       |       |       |   7   |   8   |   9   |   *   | Bksp  |
+   * | Tab   | NUMLK |       |       |       |       |       |   7   |   8   |   9   |   *   | Bksp  |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  |       |       |       |       |       |       |   4   |   5   |   6   |   /   | Equal |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -221,7 +224,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Symantic Symbols
    * ,-----------------------------------------------------------------------------------------------.
-   * | Esc   |       |       | ! Exl |       | * Ast |       |       |       |       | % Prc | Bksp  |
+   * | Tab   |       |       | ! Exl |       | * Ast |       |       |       |       | % Prc | Bksp  |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * | Exit  | @ At  | # Shp | $ Dlr |       |       | # Hsh |       |       |       |       |       |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -236,6 +239,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     EXT_SYS , KC_AT   , KC_HASH , KC_DLR  , XXXXXXX , XXXXXXX , KC_HASH , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
     _______ , XXXXXXX , XXXXXXX , KC_CIRC , XXXXXXX , KC_EXLM , XXXXXXX , KC_AMPR , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,
     EXT_SYS , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______
+  ),
+
+  /* Gaming
+   * ,-----------------------------------------------------------------------------------------------.
+   * | Tab   |   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |   9   |   0   | Bksp  |
+   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
+   * | Esc   |       |       |   w   |       |       |       |       |       |       |       |       |
+   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
+   * | Shift |       |   a   |   s   |   d   |       |       |       |       |       |       | Enter |
+   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
+   * | Exit  |  ctl  |  alt  |  os   |       |     Space     |       |  <-   |   v   |   ^   |  ->   |
+   * |       |       |       |       |       |               |       |       |       |       |       |
+   * `-----------------------------------------------------------------------------------------------'
+   */
+  [_GAMING] = LAYOUT_planck_grid(
+    _______ , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    , KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , _______ ,
+    _______ , XXXXXXX , XXXXXXX , KC_W    , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+    _______ , XXXXXXX , KC_A    , KC_S    , KC_D    , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,
+    EXT_GME , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ , XXXXXXX , XXXXXXX , _______ , _______ , _______ , _______
   ),
 };
 
@@ -265,6 +287,12 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
       {131,255,255}, {131,255,255}, {131,255,255}, {131,255,255}, {000,000,000}, {000,000,000}, {131,255,255}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000},
       {000,000,000}, {000,000,000}, {000,000,000}, {131,255,255}, {000,000,000}, {131,255,255}, {000,000,000}, {131,255,255}, {000,000,000}, {000,000,000}, {000,000,000}, {131,255,255},
       {131,255,255}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000},        {131,255,255}        , {000,000,000}, {131,255,255}, {131,255,255}, {131,255,255}, {131,255,255}
+    },
+    [8] = {
+      {000,000,000}, { 79,140, 28}, {000,138,057}, {000,135, 86}, {000,130,114}, {000,123,140}, {000,116,161}, {000,106,174}, {000, 95,178}, {000, 81,171}, {056,063,154}, {000,000,000},
+      {000,000,000}, {000,000,000}, {000,000,000}, {000,245,245}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000},
+      {000,000,000}, {000,000,000}, {000,245,245}, {000,245,245}, {000,245,245}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000},
+      {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000},        {000,000,000}        , {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}, {000,000,000}
     },
 };
 
@@ -296,6 +324,9 @@ void rgb_matrix_indicators_user(void) {
       break;
     case 7:
       set_layer_color(7);
+      break;
+    case 8:
+      set_layer_color(8);
       break;
    default:
     if (rgb_matrix_get_flags() == LED_FLAG_NONE)
@@ -374,6 +405,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case EXT_SYS:
         if (record->event.pressed) {
             layer_off(_SEMSYMB);
+        }
+
+        return false;
+    case EXT_GME:
+        if (record->event.pressed) {
+            layer_off(_GAMING);
         }
 
         return false;
